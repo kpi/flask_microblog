@@ -37,4 +37,6 @@ nosetests.xml
 
 venv
 app.db
+.bash_history
+data/
 microblog.log*

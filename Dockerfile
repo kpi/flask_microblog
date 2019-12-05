@@ -1,13 +1,12 @@
-FROM python:3.6-alpine
+FROM python:3.8-slim-buster
 
-RUN adduser -D microblog
+RUN adduser microblog
 
 WORKDIR /home/microblog
 
 COPY requirements.txt requirements.txt
-RUN python -m venv venv
-RUN venv/bin/pip install -r requirements.txt
-RUN venv/bin/pip install gunicorn pymysql
+RUN pip install -r requirements.txt
+RUN pip install gunicorn pymysql
 
 COPY app app
 COPY migrations migrations
@@ -20,4 +19,4 @@ RUN chown -R microblog:microblog ./
 USER microblog
 
 EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]
+CMD ["./boot.sh"]
